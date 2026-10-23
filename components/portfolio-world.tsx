@@ -20,6 +20,7 @@ import {
 } from 'react';
 import * as THREE from 'three';
 import { Residents } from './residents';
+import { Scooter } from './scooter';
 import { LavenderForest } from './lavender-forest';
 import { EntranceClock, GardenSky, RoomDoor } from './house-life';
 import {
@@ -1409,6 +1410,7 @@ function Exterior({
   return (
     <group>
       <EntranceClock night={night} />
+      <Scooter night={night} />
       <mesh
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, -0.53, 4]}
