@@ -1,12 +1,73 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import * as THREE from 'three';
 
 type V3 = [number, number, number];
 const pink = '#e794b6';
 const cream = '#c6b599';
 const chrome = '#bcc7c5';
+
+function HeadlightGlow() {
+  const target = useMemo(() => new THREE.Object3D(), []);
+  const glow = useMemo(() => {
+    const size = 64;
+    const pixels = new Uint8Array(size * size * 4);
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const radius = Math.hypot(
+          ((x + 0.5) / size) * 2 - 1,
+          ((y + 0.5) / size) * 2 - 1,
+        );
+        const alpha = Math.pow(Math.max(0, 1 - radius), 1.7);
+        pixels.set(
+          [255, 225, 166, Math.round(alpha * 190)],
+          (y * size + x) * 4,
+        );
+      }
+    }
+    const texture = new THREE.DataTexture(pixels, size, size);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.magFilter = THREE.LinearFilter;
+    texture.minFilter = THREE.LinearFilter;
+    texture.needsUpdate = true;
+    return texture;
+  }, []);
+  useEffect(() => () => glow.dispose(), [glow]);
+
+  return (
+    <group name="Night headlight">
+      {/* Target belongs to the steering group, so the beam follows the parked bike. */}
+      <primitive object={target} position={[-4.5, -1.5, 0]} />
+      <spotLight
+        position={[-0.24, 0.015, 0]}
+        target={target}
+        color="#ffe1aa"
+        intensity={85}
+        distance={8}
+        angle={0.42}
+        penumbra={1}
+        decay={2}
+      />
+      <pointLight
+        position={[-0.3, 0.015, 0]}
+        color="#ffe5b9"
+        intensity={0.8}
+        distance={1.25}
+        decay={2}
+      />
+      <sprite position={[-0.3, 0.015, 0]} scale={[1.35, 1.35, 1]}>
+        <spriteMaterial
+          map={glow}
+          transparent
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+          toneMapped={false}
+        />
+      </sprite>
+    </group>
+  );
+}
 
 function Oval({
   at,
@@ -338,10 +399,11 @@ export function Scooter({ night }: { night: boolean }) {
           <meshStandardMaterial
             color="#f3edda"
             emissive="#ffe1a6"
-            emissiveIntensity={night ? 1.7 : 0.15}
+            emissiveIntensity={night ? 3 : 0}
             roughness={0.18}
           />
         </mesh>
+        {night && <HeadlightGlow />}
         <group position={[-0.06, 0.15, 0]} rotation={[0, 0, -0.18]}>
           <mesh rotation={[0, Math.PI / 2, 0]}>
             <shapeGeometry args={[windshield, 28]} />
