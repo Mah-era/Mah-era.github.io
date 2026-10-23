@@ -871,17 +871,18 @@ svg g:focus-visible {
 }
 .story-item-copy > span {
   display: block;
-  font:
-    9px/1.6 var(--font-geist-mono),
-    monospace;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.6;
   color: #a3694e;
   letter-spacing: 0.5px;
 }
 .story-item-copy h3 {
-  font:
-    400 27px/1.12 Georgia,
-    serif;
-  letter-spacing: -0.8px;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.9px;
   overflow-wrap: anywhere;
   margin: 13px 0;
 }
@@ -1622,7 +1623,13 @@ svg g:focus-visible {
     bottom: var(--mobile-bottom);
     width: auto;
     max-width: 480px;
-    text-shadow: 0 1px 12px #eee8d8b0;
+    padding: 20px 20px 18px;
+    border: 1px solid #5a574326;
+    border-radius: 20px;
+    background: #f3f0e8e8;
+    box-shadow: 0 14px 42px #1f241f24;
+    backdrop-filter: blur(18px);
+    text-shadow: none;
   }
   .home-experience .arrival-copy h1 {
     font-size: clamp(38px, 10.8vw, 68px);
@@ -1683,6 +1690,13 @@ svg g:focus-visible {
     bottom: var(--mobile-bottom);
     width: auto;
     max-width: none;
+    padding: 18px 20px;
+    border: 1px solid #5a574326;
+    border-radius: 20px;
+    background: #f3f0e8e8;
+    box-shadow: 0 14px 42px #1f241f24;
+    backdrop-filter: blur(18px);
+    text-shadow: none;
   }
   .chapter-copy .eyebrow {
     font-size: 11px;
@@ -1690,12 +1704,18 @@ svg g:focus-visible {
   .chapter-copy h1 {
     font-size: clamp(26px, 7.5vw, 38px);
     line-height: 1.06;
-    margin: 8px 0 14px;
+    margin: 8px 0 12px;
     max-width: 24ch;
   }
-  .chapter-description,
   .chapter-location {
     display: none;
+  }
+  .chapter-description {
+    display: block;
+    margin: 0 0 14px;
+    color: #4c5146;
+    font-size: 13px;
+    line-height: 1.45;
   }
   .chapter-copy .primary-button {
     min-height: 46px;
@@ -1705,8 +1725,13 @@ svg g:focus-visible {
   .home-experience .scene-status {
     top: calc(120px + env(safe-area-inset-top, 0px));
     bottom: auto;
-    width: calc(100% - 32px);
-    font-size: 12px;
+    width: auto;
+    max-width: calc(100% - 32px);
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #f3f0e8d9;
+    backdrop-filter: blur(10px);
+    font-size: 11px;
     line-height: 1.45;
     text-align: center;
     white-space: normal;
@@ -1720,6 +1745,9 @@ svg g:focus-visible {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 5px;
+    border-top: 1px solid #5a574326;
+    background: #f3f0e8ec;
+    backdrop-filter: blur(18px);
   }
   .scroll-invitation {
     display: none;
@@ -1793,7 +1821,18 @@ svg g:focus-visible {
     color: #252a26;
   }
   .after-hours .arrival-copy {
-    text-shadow: 0 2px 12px #15231dcc;
+    background: #202b27e8;
+    border-color: #ead9b53a;
+    text-shadow: none;
+  }
+  .after-hours .chapter-copy,
+  .after-hours .scene-status,
+  .after-hours .journey-footer {
+    background: #202b27e8;
+    border-color: #ead9b53a;
+  }
+  .after-hours .chapter-description {
+    color: #e3d6c2;
   }
   .after-hours .footer-controls .motion-button,
   .after-hours .footer-controls .step-button {
@@ -1920,6 +1959,34 @@ svg g:focus-visible {
   }
   .chapter-copy h1 {
     font-size: 26px;
+  }
+}
+
+@media (max-width: 800px) and (max-height: 640px) {
+  .home-experience .arrival-copy,
+  .home-experience .chapter-copy {
+    padding: 14px 16px;
+  }
+  .home-experience .arrival-copy h1 {
+    font-size: clamp(32px, 10vw, 42px);
+    margin: 4px 0 8px;
+  }
+  .arrival-copy h2 {
+    font-size: 14px;
+  }
+  .chapter-copy h1 {
+    font-size: 23px;
+    margin: 6px 0 10px;
+  }
+  .chapter-description,
+  .home-experience .scene-status {
+    display: none;
+  }
+  .home-experience .scene-topline {
+    top: calc(59px + env(safe-area-inset-top, 0px));
+  }
+  .scene-topline > span {
+    display: none;
   }
 }
 

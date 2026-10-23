@@ -652,7 +652,17 @@ export default function Home() {
       <Sheet
         open={stories}
         onOpenChange={setStories}
-        onOpenChangeComplete={finishModalTravel}
+        onOpenChangeComplete={(open) => {
+          finishModalTravel(open);
+          if (open) {
+            requestAnimationFrame(() => {
+              document.querySelector<HTMLElement>('.story-sheet')?.scrollTo({
+                top: 0,
+                behavior: 'instant',
+              });
+            });
+          }
+        }}
       >
         <SheetContent className="story-sheet">
           <div className="sheet-heading">
