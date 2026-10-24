@@ -24,6 +24,7 @@ import { Scooter } from './scooter';
 import { LavenderForest } from './lavender-forest';
 import { EntranceClock, GardenSky, RoomDoor } from './house-life';
 import {
+  featuredProjects,
   roomData,
   roomItems,
   roomOrder,
@@ -978,10 +979,10 @@ function Exhibit({
             color="#66675e"
           >
             {hover
-              ? 'OPEN STORY ↗'
+              ? 'OPEN DETAILS ↗'
               : item.image
                 ? 'VIEW PROJECT ↗'
-                : 'A CLOSER LOOK ↗'}
+                : 'VIEW DETAILS ↗'}
           </SceneText>
         </group>
       </Float>
@@ -1141,8 +1142,17 @@ function Room({
 }) {
   const room = roomOrder[index],
     data = roomData[room],
-    items = roomItems[room];
+    items = room === 'projects' ? featuredProjects : roomItems[room];
   const suppressClick = useContext(LookContext);
+  // Four full-size cards flank the doorway; two face the room entrance at 45°.
+  const projectSlots: Array<{ at: V3; rotation: V3 }> = [
+    { at: [-3.4, 4.6, -7.42], rotation: [0, 0, 0] },
+    { at: [3.4, 4.6, -7.42], rotation: [0, 0, 0] },
+    { at: [-3.4, 2.05, -7.42], rotation: [0, 0, 0] },
+    { at: [3.4, 2.05, -7.42], rotation: [0, 0, 0] },
+    { at: [-5.65, 3, -4.7], rotation: [0, Math.PI / 4, 0] },
+    { at: [5.65, 3, -4.7], rotation: [0, -Math.PI / 4, 0] },
+  ];
   return (
     <group position={[0, 0, -index * 16]}>
       <RoomShell room={room} index={index} night={night} />
@@ -1295,25 +1305,13 @@ function Room({
         </>
       )}
       {items.map((item, i) => {
-        const many = room === 'projects';
         const side = i % 2 === 0 ? -1 : 1;
-        const projectFrontColumns = [-5.25, -2.65, 2.65, 5.25];
-        const projectFrontRows = [1.2, 3.05, 4.9];
-        const projectSideSlots: Array<{ at: V3; rotation: V3 }> = [
-          { at: [-6.72, 1.45, -4.65], rotation: [0, Math.PI / 2, 0] },
-          { at: [6.72, 1.45, -4.65], rotation: [0, -Math.PI / 2, 0] },
-          { at: [-6.72, 3.25, -4.65], rotation: [0, Math.PI / 2, 0] },
+        const projectSlot = room === 'projects' ? projectSlots[i] : null;
+        const at: V3 = projectSlot?.at ?? [
+          side * 4.3,
+          2.1 + Math.floor(i / 2) * 2.45,
+          -7.4,
         ];
-        const projectSlot = i >= 12 ? projectSideSlots[i - 12] : null;
-        const at: V3 = many
-          ? projectSlot
-            ? projectSlot.at
-            : [
-                projectFrontColumns[i % projectFrontColumns.length],
-                projectFrontRows[Math.floor(i / projectFrontColumns.length)],
-                -7.42,
-              ]
-          : [side * 4.3, 2.1 + Math.floor(i / 2) * 2.45, -7.4];
         const rotation: V3 = projectSlot?.rotation ?? [0, 0, 0];
         return (
           <Exhibit
@@ -1325,7 +1323,6 @@ function Room({
             accent={data.accent}
             reduced={reduced}
             onInspect={onInspect}
-            small={many}
           />
         );
       })}
@@ -1346,7 +1343,7 @@ function Room({
             fontSize={0.14}
             color={data.ink}
           >
-            CONTINUE →
+            NEXT SECTION →
           </SceneText>
         </group>
       )}
@@ -1368,7 +1365,7 @@ function Room({
             letterSpacing={0.06}
             color="#42463b"
           >
-            go front
+            OVERVIEW
           </SceneText>
         </group>
       )}
@@ -1562,7 +1559,7 @@ function Exterior({
         letterSpacing={0.12}
         color="#725f43"
       >
-        THE RESIDENCE
+        PORTFOLIO
       </SceneText>
       {[-2.3, 2.3].map((x) => (
         <group key={x} position={[x, 2.8, 8.54]}>
@@ -1939,7 +1936,7 @@ class WorldBoundary extends Component<
 function WebGLFallback() {
   return (
     <div className="webgl-fallback">
-      Explore the portfolio through the room guide.
+      Select Browse sections to view the portfolio.
     </div>
   );
 }

@@ -1189,6 +1189,16 @@ svg g:focus-visible {
   line-height: 1.85;
   color: #797467;
 }
+.exhibit-highlights {
+  display: grid;
+  gap: 0.6rem;
+  margin: 16px 0;
+  padding-left: 1.2rem;
+  list-style: disc;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #797467;
+}
 .project-meta {
   display: flex;
   gap: 10px;

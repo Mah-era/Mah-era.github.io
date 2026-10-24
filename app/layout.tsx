@@ -32,11 +32,12 @@ export const metadata: Metadata = {
   ),
   title: 'Mahera Tasfee | Supply Chain, Operations & Analytics',
   description:
-    'Portfolio of Mahera Tasfee, a Supply Chain Management and Marketing BBA candidate focused on operations, planning, analytics, and practical digital systems.',
+    'NSU BBA candidate in Supply Chain Management and Marketing. Experience coordinating 35+ client projects and developing AI-assisted analytics prototypes.',
   keywords: [
     'Mahera Tasfee',
     'supply chain management',
     'operations',
+    'project coordination',
     'demand planning',
     'business analytics',
     'Power BI',
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Mahera Tasfee | Supply Chain, Operations & Analytics',
     description:
-      'Turning operational complexity into decision-ready clarity through supply-chain thinking, analytics, and practical digital systems.',
+      'NSU BBA candidate in Supply Chain Management and Marketing. Experience coordinating 35+ client projects and developing AI-assisted analytics prototypes.',
     siteName: 'Mahera Tasfee',
     images: [
       {
@@ -64,7 +65,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Mahera Tasfee | Supply Chain, Operations & Analytics',
-    description: 'Supply chain · analytics · digital systems',
+    description:
+      'NSU BBA candidate. Project coordination experience, supply-chain analytics prototypes and an interest in graduate and management trainee roles.',
     images: ['/og.png'],
   },
 };

@@ -48,6 +48,7 @@ import {
   roomItems,
   roomOrder,
   projects,
+  featuredProjects,
   type RoomId,
   type WorldItem,
 } from '@/lib/portfolio-data';
@@ -209,13 +210,13 @@ export default function Home() {
         <div className="world-stage">
           {fallback && (
             <output className="world-access-fallback">
-              <span>Interactive residence</span>
+              <span>Portfolio sections</span>
               <strong>
-                Use the room guide below to explore Mahera’s work.
+                Select Browse sections to view qualifications and work.
               </strong>
               <small>
-                3D preview is unavailable in this browser; all rooms remain
-                accessible below.
+                The 3D preview is unavailable in this browser. All portfolio
+                content is available through the section guide.
               </small>
             </output>
           )}
@@ -241,13 +242,13 @@ export default function Home() {
             type="button"
             className="wordmark"
             onClick={() => travel(0)}
-            aria-label="Mahera Tasfee, return to entrance"
+            aria-label="Mahera Tasfee, back to overview"
           >
             <span className="monogram">
               m<span>t</span>
             </span>
             <span>
-              MAHERA TASFEE<small>A MIND FOR WHAT’S NEXT</small>
+              MAHERA TASFEE<small>SUPPLY CHAIN &amp; OPERATIONS</small>
             </span>
           </button>
           <nav className="header-nav" aria-label="Portfolio shortcuts">
@@ -262,7 +263,7 @@ export default function Home() {
               onClick={() => setGuide(true)}
               className="guide-button"
             >
-              <Compass size={17} /> The floor plan
+              <Compass size={17} /> Browse sections
             </button>
           </nav>
           <a
@@ -271,15 +272,15 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            Let’s connect <ArrowUpRight size={17} />
+            LinkedIn <ArrowUpRight size={17} />
           </a>
         </header>
 
         {intro ? (
           <section className="arrival-copy">
             <div className="eyebrow">
-              <span className="live-dot" /> WELCOME TO MY WORLD{' '}
-              <span className="edition">VOL. 01 / 2026</span>
+              <span className="live-dot" /> EARLY CAREER PORTFOLIO{' '}
+              <span className="edition">EXPECTED GRADUATION / FALL 2026</span>
             </div>
             <h1>
               Mahera
@@ -289,12 +290,13 @@ export default function Home() {
               </em>
             </h1>
             <h2>
-              A business mind.
-              <br /> A builder’s instinct.
+              Project coordination.
+              <br /> Operational analysis.
             </h2>
             <p>
-              I connect the dots between people, data, and operations — and turn
-              that thinking into things that work.
+              NSU BBA candidate in Supply Chain Management and Marketing.
+              Coordinated 35+ client projects and built AI-assisted supply-chain
+              analytics prototypes.
             </p>
             <div className="hero-tags">
               <span>Supply chain</span>
@@ -308,7 +310,7 @@ export default function Home() {
               className="primary-button"
               onClick={() => travel(1)}
             >
-              <span>Step inside my world</span>
+              <span>View profile</span>
               <span className="button-arrow">
                 <ArrowRight size={21} />
               </span>
@@ -321,12 +323,12 @@ export default function Home() {
                 setStories(true);
               }}
             >
-              Or, go straight to my work <ArrowUpRight size={16} />
+              View projects <ArrowUpRight size={16} />
             </button>
             <div className="intro-footnote">
               <span>BASED IN DHAKA, BANGLADESH</span>
               <span>
-                OPEN TO OPPORTUNITIES <i />
+                OPEN TO GRADUATE ROLES <i />
               </span>
             </div>
           </section>
@@ -355,8 +357,8 @@ export default function Home() {
             >
               <span>
                 {current === 'projects'
-                  ? `Explore all ${projects.length} projects`
-                  : 'Discover this room'}
+                  ? `View all ${projects.length} projects`
+                  : 'View details'}
               </span>
               <Plus size={19} />
             </button>
@@ -369,7 +371,7 @@ export default function Home() {
 
         <div className="scene-topline">
           <span>
-            <i /> {intro ? 'THE RESIDENCE' : data.label.toUpperCase()}
+            <i /> {intro ? 'PORTFOLIO OVERVIEW' : data.label.toUpperCase()}
           </span>
           <button
             type="button"
@@ -385,7 +387,7 @@ export default function Home() {
             className="explore-seal"
             type="button"
             onClick={() => travel(1)}
-            aria-label="Begin the seven-room journey"
+            aria-label="View profile"
           >
             <svg viewBox="0 0 100 100" aria-hidden="true">
               <defs>
@@ -396,7 +398,7 @@ export default function Home() {
               </defs>
               <text>
                 <textPath href="#seal-path">
-                  SCROLL TO EXPLORE · A WORLD OF IDEAS ·{' '}
+                  SCROLL TO EXPLORE · QUALIFICATIONS &amp; WORK ·{' '}
                 </textPath>
               </text>
             </svg>
@@ -405,16 +407,16 @@ export default function Home() {
         )}
         {intro && (
           <div className="architecture-caption">
-            <span>AN EXPLORATION IN SEVEN CHAPTERS</span>
+            <span>QUALIFICATIONS, EXPERIENCE &amp; PROJECTS</span>
             <p>
-              Every room,
+              Business training.
               <br />
-              <em>a different perspective.</em>
+              <em>Applied through projects.</em>
             </p>
             <button
               type="button"
               onClick={() => travel(1)}
-              aria-label="Enter the residence"
+              aria-label="View profile"
             >
               <MoveUpRight size={23} />
             </button>
@@ -423,29 +425,31 @@ export default function Home() {
         <div className="scene-coordinate" aria-hidden="true">
           {intro
             ? '23.81° N / 90.41° E'
-            : `CHAPTER ${String(chapter).padStart(2, '0')} / 07`}
-          <span>{night ? 'EVENING STUDY' : 'LIGHT & PERSPECTIVE'}</span>
+            : `SECTION ${String(chapter).padStart(2, '0')} / 07`}
+          <span>{night ? 'EVENING VIEW' : 'DAYLIGHT VIEW'}</span>
         </div>
         {!intro && (
           <div className="room-sign">
-            <span>THE COLLECTION</span>
+            <span>SECTION DETAILS</span>
             <strong>{data.label}</strong>
             <div>
               <span />
-              {roomItems[current].length} stories to discover
+              {current === 'projects'
+                ? `${featuredProjects.length} featured · ${projects.length} total`
+                : `${roomItems[current].length} items to view`}
             </div>
           </div>
         )}
         <div className="scene-status">
           {!ready
-            ? 'Preparing the residence…'
+            ? 'Loading the interactive portfolio…'
             : fallback
-              ? 'Explore the portfolio through the room guide.'
+              ? 'Select Browse sections to view the portfolio.'
               : intro
-                ? 'A scroll becomes a journey.'
+                ? 'Scroll to view qualifications, experience and projects.'
                 : mobile
-                  ? 'Swipe sideways to look · swipe up to walk'
-                  : 'Drag to look around · scroll to walk · select an exhibit'}
+                  ? 'Swipe sideways to look · swipe up to continue'
+                  : 'Drag to look around · scroll to continue · select a card'}
         </div>
 
         <footer className="journey-footer">
@@ -455,18 +459,18 @@ export default function Home() {
             </span>
             <span>
               {intro
-                ? 'SCROLL TO ENTER'
+                ? 'SCROLL TO VIEW PROFILE'
                 : chapter === 7
-                  ? 'THE LOUNGE'
+                  ? 'CONTACT'
                   : 'SCROLL TO CONTINUE'}
               <small>
                 {intro
-                  ? 'Take a little look around'
-                  : `${visited.length} of 7 rooms explored`}
+                  ? 'Or select Browse sections'
+                  : `${visited.length} of ${roomOrder.length} sections viewed`}
               </small>
             </span>
           </div>
-          <nav className="chapter-dots" aria-label="Jump to room">
+          <nav className="chapter-dots" aria-label="Jump to section">
             {roomOrder.map((id, i) => (
               <button
                 type="button"
@@ -488,7 +492,7 @@ export default function Home() {
                 className="step-button mobile-previous"
                 onClick={() => travel(chapter - 1)}
                 aria-label={
-                  chapter === 1 ? 'Return to entrance' : 'Go to previous room'
+                  chapter === 1 ? 'Back to overview' : 'Go to previous section'
                 }
               >
                 <ArrowLeft size={20} />
@@ -543,7 +547,7 @@ export default function Home() {
               className="step-button"
               onClick={() => travel(chapter === 7 ? 0 : chapter + 1)}
               aria-label={
-                chapter === 7 ? 'Return to entrance' : 'Go to next room'
+                chapter === 7 ? 'Back to overview' : 'Go to next section'
               }
             >
               {chapter === 7 ? <House size={18} /> : <ArrowRight size={20} />}
@@ -561,14 +565,15 @@ export default function Home() {
         onOpenChangeComplete={finishModalTravel}
       >
         <DialogContent className="home-guide">
-          <div className="eyebrow">YOUR VISIT, YOUR PACE</div>
+          <div className="eyebrow">PORTFOLIO SECTIONS</div>
           <DialogTitle>
-            A place for every
+            Qualifications,
             <br />
-            <em>part of the story.</em>
+            <em>experience and projects.</em>
           </DialogTitle>
           <DialogDescription>
-            Move directly to a room, or follow the full walkthrough.
+            Select a section to view education, work experience, projects or
+            contact details.
           </DialogDescription>
           <div className="guide-layout">
             <div className="floorplan">
@@ -576,7 +581,7 @@ export default function Home() {
               <svg
                 viewBox="0 0 360 510"
                 role="img"
-                aria-label="Interactive floor plan of seven portfolio rooms"
+                aria-label="Interactive floor plan of seven portfolio sections"
               >
                 <path d="M180 475V44" className="plan-path" />
                 {roomOrder.map((id, i) => {
@@ -587,7 +592,7 @@ export default function Home() {
                       key={id}
                       role="button"
                       tabIndex={0}
-                      aria-label={`Enter ${roomData[id].label}`}
+                      aria-label={`View ${roomData[id].label}`}
                       onClick={() => travel(i + 1)}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
@@ -609,11 +614,11 @@ export default function Home() {
                   );
                 })}
                 <text x="214" y="418" className="plan-entry">
-                  THE ENTRANCE
+                  OVERVIEW
                 </text>
                 <path d="M181 487l-6-12h12z" className="plan-arrow" />
               </svg>
-              <span>SEVEN ROOMS. ONE CURIOUS MIND.</span>
+              <span>{roomOrder.length} SECTIONS. SELECT ONE TO CONTINUE.</span>
             </div>
             <div className="guide-rooms">
               {roomOrder.map((id, i) => (
@@ -644,7 +649,7 @@ export default function Home() {
             className="text-button"
             onClick={() => travel(0)}
           >
-            <ArrowLeft size={16} /> Back to the front door
+            <ArrowLeft size={16} /> Back to overview
           </button>
         </DialogContent>
       </Dialog>
@@ -674,7 +679,7 @@ export default function Home() {
             <SheetTitle>{storyData.label}</SheetTitle>
             <SheetDescription>
               {storyRoom === 'projects'
-                ? 'The complete project collection. Open any project for a closer look.'
+                ? 'AI-assisted prototypes, simulations, and coursework. Select a project for its scope and available source code. Six projects are featured in the room; the complete collection is below.'
                 : storyData.subtitle}
             </SheetDescription>
           </div>
@@ -703,7 +708,7 @@ export default function Home() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <MoveUpRight size={30} />
-                    <span>SCREENSHOTS & FILM COMING SOON</span>
+                    <span>PREVIEW NOT ADDED YET</span>
                   </div>
                 ) : null}
                 <div className="story-item-copy">
@@ -714,7 +719,7 @@ export default function Home() {
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
                   <i>
-                    Open story <ArrowUpRight size={17} />
+                    View details <ArrowUpRight size={17} />
                   </i>
                 </div>
               </button>
@@ -747,9 +752,9 @@ export default function Home() {
                 <div className="exhibit-media empty-preview">
                   <BookOpen size={46} />
                   <span>
-                    Space for a screen recording, screenshots,
+                    Screenshots and a screen recording
                     <br />
-                    and the story behind this project.
+                    will be added here.
                   </span>
                 </div>
               ) : (
@@ -761,13 +766,20 @@ export default function Home() {
                 <p className="eyebrow">{selected.eyebrow}</p>
                 <DialogTitle>{selected.title}</DialogTitle>
                 <DialogDescription>{selected.body}</DialogDescription>
+                {selected.highlights?.length ? (
+                  <ul className="exhibit-highlights">
+                    {selected.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                ) : null}
                 {selected.language && (
                   <div className="project-meta">
                     <span>{selected.language}</span>
                     <span>
                       {selected.image
                         ? 'Project preview'
-                        : 'Media coming later'}
+                        : 'Preview not added yet'}
                     </span>
                   </div>
                 )}
@@ -790,7 +802,7 @@ export default function Home() {
                     setStories(true);
                   }}
                 >
-                  See all stories in this room <ChevronRight size={16} />
+                  View all section details <ChevronRight size={16} />
                 </button>
               </div>
             </>
@@ -800,8 +812,13 @@ export default function Home() {
       <noscript>
         <div className="no-script">
           <h1>Mahera Tasfee</h1>
-          <p>Supply chain, operations, analytics, and digital systems.</p>
-          <a href="https://github.com/Mah-era">Explore GitHub</a>
+          <p>
+            North South University BBA candidate in Supply Chain Management and
+            Marketing, expected Fall 2026. Project coordination experience
+            across 35+ client projects and self-initiated supply-chain analytics
+            prototypes.
+          </p>
+          <a href="https://github.com/Mah-era">View projects on GitHub</a>
           <a href="https://www.linkedin.com/in/mahera-tasfee/">
             Connect on LinkedIn
           </a>
