@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   ),
   title: 'Mahera Tasfee | Supply Chain, Operations & Analytics',
   description:
-    'NSU BBA candidate in Supply Chain Management and Marketing. Experience coordinating 35+ client projects and developing AI-assisted analytics prototypes.',
+    '35+ projects across 8+ client accounts. BDT 1.4M+ in sponsorship commitments. NSU BBA candidate in Supply Chain Management and Marketing.',
   keywords: [
     'Mahera Tasfee',
     'supply chain management',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Mahera Tasfee | Supply Chain, Operations & Analytics',
     description:
-      'NSU BBA candidate in Supply Chain Management and Marketing. Experience coordinating 35+ client projects and developing AI-assisted analytics prototypes.',
+      '35+ projects across 8+ client accounts. BDT 1.4M+ in sponsorship commitments. NSU BBA candidate in Supply Chain Management and Marketing.',
     siteName: 'Mahera Tasfee',
     images: [
       {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mahera Tasfee | Supply Chain, Operations & Analytics',
     description:
-      'NSU BBA candidate. Project coordination experience, supply-chain analytics prototypes and an interest in graduate and management trainee roles.',
+      '35+ client projects, 8+ accounts and BDT 1.4M+ in sponsorship commitments. Supply chain, operations and analytics portfolio.',
     images: ['/og.png'],
   },
 };

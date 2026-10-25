@@ -290,13 +290,13 @@ export default function Home() {
               </em>
             </h1>
             <h2>
-              Project coordination.
-              <br /> Operational analysis.
+              35+ client projects.
+              <br /> 8+ client accounts.
             </h2>
             <p>
-              NSU BBA candidate in Supply Chain Management and Marketing.
-              Coordinated 35+ client projects and built AI-assisted supply-chain
-              analytics prototypes.
+              Reduced recurring status-check effort by an estimated 20–25%
+              through a Notion workflow. NSU BBA candidate in Supply Chain
+              Management and Marketing.
             </p>
             <div className="hero-tags">
               <span>Supply chain</span>
@@ -407,11 +407,11 @@ export default function Home() {
         )}
         {intro && (
           <div className="architecture-caption">
-            <span>QUALIFICATIONS, EXPERIENCE &amp; PROJECTS</span>
+            <span>NSU DEBATE CLUB · LEADERSHIP</span>
             <p>
-              Business training.
+              BDT 1.4M+ secured.
               <br />
-              <em>Applied through projects.</em>
+              <em>Sponsorship commitments.</em>
             </p>
             <button
               type="button"
