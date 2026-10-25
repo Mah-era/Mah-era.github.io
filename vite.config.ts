@@ -53,6 +53,23 @@ export default defineConfig(async () => {
       : undefined,
     plugins: [
       vinext(),
+      ...(githubPages
+        ? [
+            {
+              name: 'portfolio-font-base-path',
+              // Vinext 1.0 beta emits self-hosted font URLs without Vite's base.
+              // Rewrite the generated modules so SSR styles and preloads agree.
+              transform(code: string) {
+                const fontPath = '/_next/static/_vinext_fonts/';
+                if (!code.includes(fontPath)) return null;
+                return {
+                  code: code.replaceAll(fontPath, `/Portfolio${fontPath}`),
+                  map: null,
+                };
+              },
+            },
+          ]
+        : []),
       ...(!githubPages
         ? [
             sites(),
