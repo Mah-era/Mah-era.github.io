@@ -571,6 +571,10 @@ svg g:focus-visible {
   justify-content: space-between;
   gap: 18px;
   padding: 25px 3.7% 30px;
+  pointer-events: none;
+}
+.journey-footer button {
+  pointer-events: auto;
 }
 .scroll-invitation {
   display: flex;
